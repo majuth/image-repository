@@ -3,12 +3,18 @@ import React, { Component } from 'react';
 import { storage } from "./firebase";
 
 class App extends Component {
-  state = {
-    image: null,
-    images: []
+
+  constructor(){
+    super()
+    this.state = {
+      image: null,
+      images: null
+    }
   }
 
-  
+  componentDidMount(){
+    this.displayImages();
+  }
 
   fileSelectHandler = event =>{
     this.setState({
@@ -39,29 +45,21 @@ class App extends Component {
   }
 
   displayImages =  () =>{
-    var tempImages = [];
+    var tempImages = "";
     storage.ref("images").listAll().then(function(result) {
       result.items.forEach(function(imageRef) {
         imageRef.getDownloadURL().then(function(url){
-          tempImages.push(url)
+          document.getElementById("imageContent").innerHTML = (document.getElementById("imageContent").innerHTML + "<div class='imageHolder'><img src=" + url + " class='pics'/></div>");
+          console.log(url);
+          //tempImages.concat("<img src=" + {url} + "/>")
         })
       });
-    });
-    this.setState({
-      images: tempImages
-    })
-    console.log(this.state.images);
+    }).then(document.getElementById("imageContent").innerHTML = tempImages); //can make .then render here
+    console.log(tempImages);    
+    return tempImages;
   }
 
-
-
-  renderImage(imageUrl) {
-    return (
-      <div>
-        <img src={imageUrl} class="pics" alt="galleryImage"/>
-      </div>
-    );
-  }
+ 
 
   render(){
     return (
@@ -76,9 +74,7 @@ class App extends Component {
             <input type="file" onChange={this.fileSelectHandler}/>
             <button onClick={this.fileUploadHandler}>Upload</button>
           </div>
-          {this.state.images.map(imageUrl => this.renderImage(imageUrl))}
-          <div>
-          
+          <div id="imageContent">
           </div>
         </div>
       </div>
