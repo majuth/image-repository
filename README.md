@@ -4,7 +4,7 @@ This project is an image repository that can have images added and stored on ase
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can:
 
 ### `npm start`
 
