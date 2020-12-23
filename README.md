@@ -2,14 +2,7 @@
 
 This project is an image repository that can have images added and stored on aserver. It was created with React and Firebase.
 
-## Available Scripts
 
-In the project directory, you can:
+### `Deploying and viewing the app`
 
-### `npm start`
-
-Runs the app in the development mode and can be used to view the project.
-
-### `Deploying the app`
-
-App can be deployed by following the [react deployment documentation](https://create-react-app.dev/docs/deployment).
+App can be deployed after cloning the git repository by following the [react deployment documentation](https://create-react-app.dev/docs/deployment).
